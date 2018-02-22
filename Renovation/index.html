@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <script src="js/Renovation.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">电视墙尺寸计算</h1>
+	</header>
+	
+	<div class="mui-content">
+		<div class="mui-content-padded" style="margin: 5px;">
+			<h3>电视墙大概长：</h3>
+			<div  class="">
+				<input id = "long" type="text" class="mui-input-clear" placeholder="单位：cm">
+			</div>
+			
+			<h3>电视墙宽：</h3>
+			<div class="">
+				<input id = "width" type="text" class="mui-input-clear" placeholder="单位：cm">
+			</div>
+			
+			<h3>正方形排数：</h3>
+			<div class="">
+				<input id = "SquareCount" type="text" class="mui-input-clear" placeholder="完整的正方形共多少行">
+			</div>
+			
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-primary" onclick="CalAfterHtml()">计 算</button>
+			</div>
+			
+			<h3>计算后建议电视墙长(cm)：</h3>
+			<div class="">
+				<input id = "AcutalLong" type="text" class="mui-input-clear" placeholder="" readonly>
+			</div>
+			
+			<h3>电视墙实际宽(cm)：</h3>
+			<div class="">
+				<input id = "AcutalWidth" type="text" class="mui-input-clear" placeholder="" readonly>
+			</div>
+			
+			<h3>计算后正方形尺寸（边长，对角线长 cm）：</h3>
+			<div class="">
+				<input id = "AcutalSquare" type="text" class="mui-input-clear" placeholder="" readonly>
+			</div>
+			
+			<div class="mui-button-row">
+					<button type="button" class="mui-btn mui-btn-primary" onclick="ImageShow()">展示效果图</button>
+			</div>
+			
+		</div>
+	</div>
+	
+	<script>
+		function CalAfterHtml(){
+		PreLong			= document.getElementById("long");
+		Prewidth		= document.getElementById("width");
+		SquareCountRow 	= document.getElementById("SquareCount");
+		
+		ActualLong0		= document.getElementById("AcutalLong");
+		ActualWidth0	= document.getElementById("AcutalWidth");
+		SquareLong0		= document.getElementById("AcutalSquare");
+			
+		
+		
+		var	SquareDiaLong	= Prewidth.value / SquareCountRow.value;
+		var SquareLong		= SquareDiaLong  / 1.4142135623731;
+		
+		var SquareCountCol	= parseInt(PreLong.value / SquareDiaLong);
+		var LongPre			= (SquareCountCol - 1) * SquareDiaLong;
+		var LongMid			= SquareCountCol * SquareDiaLong;
+		var LongAft			= (SquareCountCol + 1) * SquareDiaLong;
+		
+		ActualLong0.value	= LongPre + '   ' + LongMid + '   ' + LongAft;
+		ActualWidth0.value	= Prewidth.value;
+		SquareLong0.value	= SquareLong + '    ' + SquareDiaLong;
+
+		}
+		
+		
+		function ImageShow(){
+			window.location="ImageShow.html"
+		}
+	</script>
+
+
+</body>
+</html>
